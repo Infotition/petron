@@ -1,0 +1,23 @@
+{
+  "name": "petron",
+  "version": "1.0.0",
+  "description": "Petron is a carbon based code formatting API.",
+  "main": "index.js",
+  "scripts": {
+    "parse": "tsc",
+    "start": "npm run parse&& cd ./dist/&& node index.js"
+  },
+  "author": "Infotition",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.13.0",
+    "@typescript-eslint/parser": "^4.13.0",
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.3"
+  }
+}
