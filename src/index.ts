@@ -3,6 +3,10 @@ export {};
 
 //* Node modules
 const express = require('express');
+const cron = require('node-cron');
+
+//* Module imports
+const deleteFolder = require('./utils/petron/delete');
 
 //* ------------------ CONFIGURATION ------------------ *\\
 
@@ -19,6 +23,11 @@ const app = express();
 app.use(express.json());
 
 app.use('/api/petron/images', express.static('../images'));
+
+//* --------------------- DEMONS ---------------------- *\\
+
+//* Delete all pictures every day at 00:00
+cron.schedule('0 0 * * *', async () => deleteFolder('../images/*'));
 
 //* --------------------- ROUTES ---------------------- *\\
 

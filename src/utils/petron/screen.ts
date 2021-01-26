@@ -4,8 +4,8 @@ export {};
 const uniqid = require('uniqid');
 
 //* Module imports
-const createSearchQuery = require('../utils/searchQuery');
-const { defaultOptions } = require('../utils/options');
+const createSearchQuery = require('./searchQuery');
+const { defaultOptions } = require('./options');
 
 //* ------------------- SCREENSHOT -------------------- *\\
 

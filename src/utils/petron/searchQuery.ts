@@ -2,7 +2,7 @@ export {};
 //* ------------------- DEPENDENCIES ------------------ *\\
 
 //* Module imports
-const { defaultOptions, bodyOptions } = require('../utils/options');
+const { defaultOptions, bodyOptions } = require('./options');
 
 //* --------------- CREATE SEARCH QUERY --------------- *\\
 
