@@ -6,6 +6,13 @@ const { defaultOptions, ignoredOptions } = require('../utils/options');
 
 //* ------------------- MIDDLEWARE -------------------- *\\
 
+/**
+ * Validates and checks if the request body is correct.
+ *
+ * @param {any} req
+ * @param {any} res
+ * @param {Function} next
+ */
 module.exports = async (req: any, res: any, next: Function) => {
   const errors = [];
 

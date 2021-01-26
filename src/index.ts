@@ -1,12 +1,8 @@
+export {};
 //* ------------------- DEPENDENCIES ------------------ *\\
 
 //* Node modules
 const express = require('express');
-const puppeteer = require('puppeteer');
-
-//* Module imports
-const takeScreenshot = require('./utils/screen');
-const validateBody = require('./middlewares/validateBody.middleware');
 
 //* ------------------ CONFIGURATION ------------------ *\\
 
@@ -17,15 +13,6 @@ require('dotenv').config({
 //* Constants
 const PORT = process.env.PORT || '3000';
 const app = express();
-let browser: any;
-
-(async () => {
-  browser = await puppeteer.launch({
-    executablePath:
-      process.env.NODE_ENV === 'prod' ? '/usr/bin/chromium-browser' : '',
-    ignoreDefaultArgs: ['--disable-extensions'],
-  });
-})();
 
 //* ------------------- MIDDLEWARES ------------------- *\\
 
@@ -35,10 +22,8 @@ app.use('/api/petron/images', express.static('../images'));
 
 //* --------------------- ROUTES ---------------------- *\\
 
-//* Code Format Route
-app.get('/api/petron/format', validateBody, async (req: any, res: any) => {
-  takeScreenshot(req, res, browser);
-});
+//* Petron routes
+app.use('/api/petron/', require('./routes/petron.route'));
 
 //* Homepage Route
 app.get('/', async (_req: any, res: any) =>
@@ -54,5 +39,3 @@ app.use(async (_req: any, res: any) =>
 app.listen(PORT, () =>
   console.log(`app listening on http://localhost:${PORT}`)
 );
-
-export {};

@@ -18,6 +18,7 @@
     "@types/node": "^14.14.22",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "node-cron": "^2.0.3",
     "puppeteer": "^5.5.0",
     "puppeteer-core": "^5.5.0",
     "raw-body": "^2.4.1",

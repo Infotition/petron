@@ -9,13 +9,20 @@ const { defaultOptions } = require('../utils/options');
 
 //* ------------------- SCREENSHOT -------------------- *\\
 
-const CARBON_URL = process.env.CARBON_URL || 'https://carbon.now.sh/';
-
+/**
+ * Opens the browser with carbon url with config headers, screenshots it and saves it as file.
+ *
+ * @param {any} req
+ * @param {any} res
+ * @param {any} browser
+ */
 module.exports = async (req: any, res: any, browser: any) => {
+  const CARBON_URL = process.env.CARBON_URL || 'https://carbon.now.sh/';
+
   //* Open new browser page and goto carbon
   const page = await browser.newPage();
-  const serarchQuery = createSearchQuery(req.body.options);
-  await page.goto(`${CARBON_URL}${serarchQuery}`);
+  const searchQuery = createSearchQuery(req.body);
+  await page.goto(`${CARBON_URL}${searchQuery}`);
 
   //* Define the device scale factor with big enough values
   const deviceScaleFactor = +{ ...defaultOptions, ...req.body.options }
