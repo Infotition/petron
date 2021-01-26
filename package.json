@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "parse": "tsc",
-    "start": "npm run parse&& cd ./dist/&& node index.js",
-    "devStart": "npm run parse&& cd ./dist/&& nodemon index.js",
-    "generate": "carbon-now"
+    "start": "npm run parse&& cd ./dist/&& cross-env NODE_ENV=prod node index.js",
+    "devStart": "npm run parse&& cd ./dist/&& cross-env NODE_ENV=dev node index.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +26,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.14.1",
     "@typescript-eslint/parser": "^4.14.1",
+    "cross-env": "^7.0.3",
     "eslint": "^7.18.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^7.1.0",

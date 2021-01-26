@@ -21,7 +21,8 @@ let browser: any;
 
 (async () => {
   browser = await puppeteer.launch({
-    executablePath: '/usr/bin/chromium-browser',
+    executablePath:
+      process.env.NODE_ENV === 'prod' ? '/usr/bin/chromium-browser' : '',
     ignoreDefaultArgs: ['--disable-extensions'],
   });
 })();
@@ -40,12 +41,12 @@ app.get('/api/petron/format', validateBody, async (req: any, res: any) => {
 });
 
 //* Homepage Route
-app.get('/', (_req: any, res: any) =>
+app.get('/', async (_req: any, res: any) =>
   res.status(200).json({ success: true, msg: 'petron server home page' })
 );
 
 //* Default route
-app.use((_req: any, res: any) =>
+app.use(async (_req: any, res: any) =>
   res.status(404).json({ success: false, msg: 'page not found' })
 );
 

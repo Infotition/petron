@@ -1,5 +1,6 @@
 export {};
 
+//* Default theme for carbon
 const defaultOptions = {
   paddingVertical: '56px',
   paddingHorizontal: '56px',
@@ -27,6 +28,7 @@ const defaultOptions = {
   code: '',
 };
 
+//* Options which can be configured via url header
 const bodyOptions = {
   backgroundColor: 'bg',
   code: 'code',
@@ -50,6 +52,7 @@ const bodyOptions = {
   windowTheme: 'wt',
 };
 
+//* Options which can't be configured via url header
 const ignoredOptions = [
   'backgroundImage',
   'backgroundImageSelection',
