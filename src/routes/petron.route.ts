@@ -8,13 +8,15 @@ const router = express.Router();
 
 //* Module imports
 const takeScreenshot = require('../utils/petron/screen');
+const createImageFolder = require('../utils/petron/createImageFolder');
 const validateBody = require('../middlewares/validateBody.middleware');
 
 //* ------------------ CONFIGURATION ------------------ *\\
 
-//* Initialize and launch Browser
+//* Initialize and launch Browser and create image folder
 let browser: any;
 (async () => {
+  createImageFolder('../images/');
   browser = await puppeteer.launch({
     executablePath:
       process.env.NODE_ENV === 'prod' ? '/usr/bin/chromium-browser' : '',
