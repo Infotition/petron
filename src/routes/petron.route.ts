@@ -7,7 +7,7 @@ const puppeteer = require('puppeteer');
 const router = express.Router();
 
 //* Module imports
-const takeScreenshot = require('../utils/screen');
+const takeScreenshot = require('../utils/petron/screen');
 const validateBody = require('../middlewares/validateBody.middleware');
 
 //* ------------------ CONFIGURATION ------------------ *\\

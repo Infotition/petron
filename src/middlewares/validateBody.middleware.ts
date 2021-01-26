@@ -2,7 +2,7 @@
 
 //* Module imports
 const getRawBody = require('raw-body');
-const { defaultOptions, ignoredOptions } = require('../utils/options');
+const { defaultOptions, ignoredOptions } = require('../utils/petron/options');
 
 //* ------------------- MIDDLEWARE -------------------- *\\
 
