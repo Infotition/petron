@@ -3,6 +3,7 @@ node_modules
 
 # Testing, Coverage
 coverage
+images/**
 
 # Secruity
 *.env
