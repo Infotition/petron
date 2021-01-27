@@ -111,6 +111,7 @@ You can choose as respone `format` between
 <br>
 
 The `options` Object must be constructed like so:
+
 | Field                | default            | type    |
 | -------------------- | ------------------ | ------- |
 | `paddingVertical`      | `'56px'`             | string  |

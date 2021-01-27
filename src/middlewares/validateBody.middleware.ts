@@ -63,7 +63,7 @@ module.exports = async (req: any, res: any, next: Function) => {
           errorCode: 1,
           message: 'token field is required',
         });
-      } else if (req.body.token !== process.env.token) {
+      } else if (req.body.token !== process.env.TOKEN) {
         errors.push({
           errorCode: 2,
           message: 'token is not correct',
