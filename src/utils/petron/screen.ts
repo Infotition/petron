@@ -40,7 +40,7 @@ module.exports = async (req: any, res: any, browser: any) => {
 
   //* Generate unique id and screenshot the element, save it public with id as name
   const id = uniqid();
-  await element.screenshot({
+  const image = await element.screenshot({
     path: `../images/${id}.png`,
     type: 'png',
   });
@@ -49,9 +49,14 @@ module.exports = async (req: any, res: any, browser: any) => {
   const PROTOCOL = process.env.PROTOCOL || 'http';
   const HOST = process.env.HOST || 'localhost';
   const PORT = process.env.PORT || '3000';
+  const format = req.body.format || 'url';
 
-  res.status(200).json({
-    success: true,
-    msg: `${PROTOCOL}://${HOST}:${PORT}/api/petron/images/${id}.png`,
-  });
+  if (format === 'url') {
+    res.status(200).json({
+      success: true,
+      msg: `${PROTOCOL}://${HOST}:${PORT}/api/petron/images/${id}.png`,
+    });
+  } else {
+    res.status(200).end(image);
+  }
 };

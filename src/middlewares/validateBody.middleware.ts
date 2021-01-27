@@ -56,10 +56,35 @@ module.exports = async (req: any, res: any, next: Function) => {
       return;
     }
 
+    //* Token must be correct if provided
+    if (process.env.token !== '') {
+      if (!req.body.token) {
+        errors.push({
+          errorCode: 1,
+          message: 'token field is required',
+        });
+      } else if (req.body.token !== process.env.token) {
+        errors.push({
+          errorCode: 2,
+          message: 'token is not correct',
+        });
+      }
+    }
+
+    //* Format is supported
+    if (req.body.format) {
+      if (req.body.format !== 'url' && req.body.format !== 'img') {
+        errors.push({
+          errorCode: 3,
+          message: 'format is not supported',
+        });
+      }
+    }
+
     //* Code parameter is required
     if (!req.body.code) {
       errors.push({
-        errorCode: 1,
+        errorCode: 4,
         message: "option 'code' is required",
       });
     }
@@ -68,7 +93,7 @@ module.exports = async (req: any, res: any, next: Function) => {
     if (req.body.theme) {
       if (!(req.body.theme in themes)) {
         errors.push({
-          errorCode: 2,
+          errorCode: 5,
           message: 'theme is not supported',
         });
       }
@@ -84,7 +109,7 @@ module.exports = async (req: any, res: any, next: Function) => {
         //* Error if param is not included in default options
         if (!(option in defaultOptions)) {
           errors.push({
-            errorCode: 3,
+            errorCode: 6,
             message: `unexpected parameter: '${option}'`,
           });
           return;
@@ -96,7 +121,7 @@ module.exports = async (req: any, res: any, next: Function) => {
 
         if (actualType !== expectedType) {
           errors.push({
-            errorCode: 4,
+            errorCode: 7,
             message: `parameter '${option}' is a ${actualType} while ${expectedType} was expected`,
           });
         }
