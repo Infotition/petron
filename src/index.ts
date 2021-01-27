@@ -11,11 +11,13 @@ const deleteFolder = require('./utils/petron/delete');
 //* ------------------ CONFIGURATION ------------------ *\\
 
 require('dotenv').config({
-  path: '../config/index.env',
+  path: `../config/${process.env.NODE_ENV}.env`,
 });
 
 //* Constants
 const PORT = process.env.PORT || '3000';
+const PROTOCOL = process.env.PROTOCOL || 'http';
+const HOST = process.env.HOST || 'localhost';
 const app = express();
 
 //* ------------------- MIDDLEWARES ------------------- *\\
@@ -46,5 +48,5 @@ app.use(async (_req: any, res: any) =>
 
 //* ------------------ START SERVER ------------------- *\\
 app.listen(PORT, () =>
-  console.log(`app listening on http://localhost:${PORT}`)
+  console.log(`app listening on ${PROTOCOL}://${HOST}:${PORT}`)
 );

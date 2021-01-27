@@ -11,7 +11,9 @@ const fs = require('fs');
  * @param {string} path
  */
 module.exports = (path: string) => {
-  fs.mkdir(path, (folderErr: Error) => {
-    if (folderErr) console.log(folderErr);
-  });
+  if (!fs.statSync(path).isDirectory()) {
+    fs.mkdir(path, (folderErr: Error) => {
+      if (folderErr) console.log(folderErr);
+    });
+  }
 };

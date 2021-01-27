@@ -1,5 +1,27 @@
 export {};
 
+const themes = {
+  panda: {
+    backgroundColor: 'rgba(35,26,35,1)',
+    theme: 'panda-syntax',
+    windowTheme: 'none',
+  },
+  zenburn: {
+    backgroundColor: 'rgba(182,162,145,1)',
+    theme: 'zenburn',
+  },
+  solarized_light: {
+    backgroundColor: 'rgba(187,187,187,1)',
+    theme: 'solarized light',
+    windowTheme: 'none',
+  },
+  material: {
+    backgroundColor: 'rgba(41,45,62,1)',
+    theme: 'material',
+    windowTheme: 'sharp',
+  },
+};
+
 //* Default theme for carbon
 const defaultOptions = {
   paddingVertical: '56px',
@@ -8,15 +30,15 @@ const defaultOptions = {
   backgroundImageSelection: null,
   backgroundMode: 'color',
   backgroundColor: 'rgba(182,162,145,1)',
-  dropShadow: false,
-  dropShadowOffsetY: '20px',
-  dropShadowBlurRadius: '68px',
+  dropShadow: true,
+  dropShadowOffsetY: '3px',
+  dropShadowBlurRadius: '13px',
   theme: 'zenburn',
   windowTheme: 'bw',
   language: 'auto',
   fontFamily: 'Hack',
   fontSize: '14px',
-  lineHeight: '152%',
+  lineHeight: '133%',
   windowControls: true,
   widthAdjustment: true,
   lineNumbers: false,
@@ -67,4 +89,4 @@ const ignoredOptions = [
   'selectedLines',
 ];
 
-module.exports = { defaultOptions, bodyOptions, ignoredOptions };
+module.exports = { defaultOptions, bodyOptions, ignoredOptions, themes };

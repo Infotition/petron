@@ -2,7 +2,11 @@
 
 //* Module imports
 const getRawBody = require('raw-body');
-const { defaultOptions, ignoredOptions } = require('../utils/petron/options');
+const {
+  defaultOptions,
+  ignoredOptions,
+  themes,
+} = require('../utils/petron/options');
 
 //* ------------------- MIDDLEWARE -------------------- *\\
 
@@ -60,6 +64,16 @@ module.exports = async (req: any, res: any, next: Function) => {
       });
     }
 
+    //* Check if theme is supported
+    if (req.body.theme) {
+      if (!(req.body.theme in themes)) {
+        errors.push({
+          errorCode: 2,
+          message: 'theme is not supported',
+        });
+      }
+    }
+
     if (req.body.options) {
       Object.keys(req.body.options).forEach((option) => {
         //* Skip if param is in the list of ignored options
@@ -70,7 +84,7 @@ module.exports = async (req: any, res: any, next: Function) => {
         //* Error if param is not included in default options
         if (!(option in defaultOptions)) {
           errors.push({
-            errorCode: 2,
+            errorCode: 3,
             message: `unexpected parameter: '${option}'`,
           });
           return;
@@ -82,7 +96,7 @@ module.exports = async (req: any, res: any, next: Function) => {
 
         if (actualType !== expectedType) {
           errors.push({
-            errorCode: 3,
+            errorCode: 4,
             message: `parameter '${option}' is a ${actualType} while ${expectedType} was expected`,
           });
         }

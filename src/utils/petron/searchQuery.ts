@@ -2,7 +2,7 @@ export {};
 //* ------------------- DEPENDENCIES ------------------ *\\
 
 //* Module imports
-const { defaultOptions, bodyOptions } = require('./options');
+const { defaultOptions, bodyOptions, themes } = require('./options');
 
 //* --------------- CREATE SEARCH QUERY --------------- *\\
 
@@ -14,7 +14,12 @@ const { defaultOptions, bodyOptions } = require('./options');
  */
 module.exports = (body: any) => {
   //* Ovverride default options with body options
-  const mergedOptions = { ...defaultOptions, ...body.options, code: body.code };
+  const mergedOptions = {
+    ...defaultOptions,
+    ...body.options,
+    code: body.code,
+    ...themes[body.theme],
+  };
 
   //* Map over options and build headers from bodyOption keywords and values
   return Object.keys(mergedOptions).reduce((acc, key) => {

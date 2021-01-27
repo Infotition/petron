@@ -6,7 +6,6 @@ coverage
 images/**
 
 # Secruity
-*.env
 
 # Temporary
 temp
