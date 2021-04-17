@@ -5,10 +5,8 @@
     "es2021": true
   },
   "extends": [
-    // Custom code style
     "airbnb-base",
-    // Settings for Prettier
-    "prettier/@typescript-eslint",
+    "prettier",
     "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
@@ -17,9 +15,14 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
-    "import/extensions": "off",
-    "import/no-unresolved": "off",
-    "no-console": "off",
-    "no-param-reassign": "off"
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    "no-shadow": 0,
+    "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-unused-vars": "error",
+    "import/first": 0,
+
+    // development
+    "no-console": 0
   }
 }

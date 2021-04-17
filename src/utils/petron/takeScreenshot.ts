@@ -1,11 +1,14 @@
-export {};
 //* ------------------- DEPENDENCIES ------------------ *\\
 
-const uniqid = require('uniqid');
+//* Node modules
+import uniqid from 'uniqid';
+import { Request, Response } from 'express';
 
-//* Module imports
-const createSearchQuery = require('./searchQuery');
-const { defaultOptions } = require('./options');
+//* Function imports
+import createSearchQuery from './createSearchQuery';
+
+//* Const imports
+import { defaultOptions } from '../../consts/petron/options';
 
 //* ------------------- SCREENSHOT -------------------- *\\
 
@@ -16,7 +19,7 @@ const { defaultOptions } = require('./options');
  * @param {any} res
  * @param {any} browser
  */
-module.exports = async (req: any, res: any, browser: any) => {
+async function takeScreenshot(req: Request, res: Response, browser: any) {
   const CARBON_URL = process.env.CARBON_URL || 'https://carbon.now.sh/';
 
   //* Open new browser page and goto carbon
@@ -41,7 +44,7 @@ module.exports = async (req: any, res: any, browser: any) => {
   //* Generate unique id and screenshot the element, save it public with id as name
   const id = uniqid();
   const image = await element.screenshot({
-    path: `../images/${id}.png`,
+    path: `./images/${id}.png`,
     type: 'png',
   });
   await page.close();
@@ -59,4 +62,8 @@ module.exports = async (req: any, res: any, browser: any) => {
   } else {
     res.status(200).end(image);
   }
-};
+}
+
+//* --------------------- EXPORTS --------------------- *\\
+
+export default takeScreenshot;

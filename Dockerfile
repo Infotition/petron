@@ -4,8 +4,8 @@ WORKDIR /home/pptruser/app
 
 # Copy directory and install node modules
 COPY package*.json ./
-RUN npm install
-COPY . .
+RUN npm install --only=prod
+COPY build .
 
 # Install puppeteer dependencies
 RUN apk --update add --no-cache \

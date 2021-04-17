@@ -1,6 +1,12 @@
-export {};
+//* ------------------- DEPENDENCIES ------------------ *\\
 
-const themes = {
+//* Model imports
+import { IThemes, IOptions } from '../../models/petron/options.model';
+
+//* -------------------- CONSTANTS -------------------- *\\
+
+//* Theme configuration
+const themes: IThemes = {
   panda: {
     backgroundColor: 'rgba(35,26,35,1)',
     theme: 'panda-syntax',
@@ -10,7 +16,7 @@ const themes = {
     backgroundColor: 'rgba(182,162,145,1)',
     theme: 'zenburn',
   },
-  solarized_light: {
+  solarizedLight: {
     backgroundColor: 'rgba(187,187,187,1)',
     theme: 'solarized light',
     windowTheme: 'none',
@@ -23,31 +29,27 @@ const themes = {
 };
 
 //* Default theme for carbon
-const defaultOptions = {
-  paddingVertical: '56px',
-  paddingHorizontal: '56px',
-  backgroundImage: null,
-  backgroundImageSelection: null,
-  backgroundMode: 'color',
+const defaultOptions: IOptions = {
   backgroundColor: 'rgba(182,162,145,1)',
-  dropShadow: true,
-  dropShadowOffsetY: '3px',
-  dropShadowBlurRadius: '13px',
-  theme: 'zenburn',
-  windowTheme: 'bw',
-  language: 'auto',
-  fontFamily: 'Hack',
-  fontSize: '14px',
-  lineHeight: '133%',
-  windowControls: true,
-  widthAdjustment: true,
-  lineNumbers: false,
-  firstLineNumber: 1,
-  exportSize: '4x',
-  watermark: false,
-  squaredImage: false,
-  hiddenCharacters: false,
   code: '',
+  dropShadow: true,
+  dropShadowBlurRadius: '13px',
+  dropShadowOffsetY: '3px',
+  exportSize: '4x',
+  fontFamily: 'Hack',
+  firstLineNumber: 1,
+  fontSize: '14px',
+  language: 'auto',
+  lineHeight: '133%',
+  lineNumbers: false,
+  paddingHorizontal: '56px',
+  paddingVertical: '56px',
+  squaredImage: false,
+  theme: 'zenburn',
+  watermark: false,
+  widthAdjustment: true,
+  windowControls: true,
+  windowTheme: 'bw',
 };
 
 //* Options which can be configured via url header
@@ -89,4 +91,6 @@ const ignoredOptions = [
   'selectedLines',
 ];
 
-module.exports = { defaultOptions, bodyOptions, ignoredOptions, themes };
+//* --------------------- EXPORTS --------------------- *\\
+
+export { defaultOptions, bodyOptions, ignoredOptions, themes };

@@ -1,23 +1,28 @@
 //* ------------------- DEPENDENCIES ------------------ *\\
 
 //* Module imports
-const getRawBody = require('raw-body');
-const {
+import { Request, Response } from 'express';
+import getRawBody from 'raw-body';
+
+//* Consts imports
+import {
   defaultOptions,
   ignoredOptions,
   themes,
-} = require('../utils/petron/options');
+} from '../../consts/petron/options';
 
 //* ------------------- MIDDLEWARE -------------------- *\\
 
 /**
  * Validates and checks if the request body is correct.
  *
- * @param {any} req
- * @param {any} res
+ * @param {Request} req
+ * @param {Response} res
  * @param {Function} next
+ * @returns {*}
  */
-module.exports = async (req: any, res: any, next: Function) => {
+
+async function validPetronBody(req: Request, res: Response, next: Function) {
   const errors = [];
 
   //* Check if Body is formatted as json
@@ -117,7 +122,9 @@ module.exports = async (req: any, res: any, next: Function) => {
 
         //* Compare types of default option and body param
         const actualType = typeof req.body.options[option];
-        const expectedType = typeof defaultOptions[option];
+        const expectedType = typeof new Map(Object.entries(defaultOptions)).get(
+          option
+        );
 
         if (actualType !== expectedType) {
           errors.push({
@@ -137,4 +144,8 @@ module.exports = async (req: any, res: any, next: Function) => {
       .status(400)
       .json({ success: false, msg: 'errors with request', errors });
   }
-};
+}
+
+//* --------------------- EXPORTS --------------------- *\\
+
+export default validPetronBody;

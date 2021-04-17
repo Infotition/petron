@@ -26,7 +26,7 @@
 
 
 # About
-Petron is a <a href="https://github.com/carbon-app/carbon">carbon</a> based code formatting API. It uses the npm module pupetteer to visit https://carbon.now.sh with custom configuration in the request header in a faceless browser. To save the picture, the api takes a screenshot of the code field to save is on a public url.
+Petron is a <a href="https://github.com/carbon-app/carbon">carbon</a> based code formatting API. It uses the npm module pupetteer to visit https://carbon.now.sh with custom configuration in the request header in a faceless browser. To save the picture, the api takes a screenshot of the code field to save it on a public url for 24 hours.
 
 This project uses [carbon](https://github.com/carbon-app/carbon) and also was heavily inspired by [carbonara](https://github.com/petersolopov/carbonara).
 
@@ -35,7 +35,7 @@ This project uses [carbon](https://github.com/carbon-app/carbon) and also was he
 For now the api is only deployed for Infotition so you have to deploy/host it for yourself.
 
 ## Development
-**Requirements**: [Node.js](https://nodejs.org/en/) for running javascript without a browser and [NPM](https://www.npmjs.com/) (Node package manager) for installing modules.
+**Requirements**: [Node.js](https://nodejs.org/en/) for running javascript code without a browser and [NPM](https://www.npmjs.com/) (Node package manager) to install npm modules.
 
 If you want to start it locally from source code, you can simply clone this repository from terminal and install all the node modules.
 
@@ -50,25 +50,25 @@ cd petron
 npm install
 ```
 
-Now everything should be insalled but for petron to work, you still have to create and configure some files.
+Now everything should be installed. For petron to work, you still have to create and configure some files.
 
 If you want your API to be public you don't have to change anything. But if you want to be protected, then navigate to the `config` folder in your project directory and choose the environment you want to set the token (production or development). Now change the value of the `TOKEN` field to anything you want. Keep in mind, that this is your token secret, so something similar to a password and should be a random string.
 
-Also Configure the server environments from `prod.env` and `dev.env` as you like. Now everything should be ready to start.
+Also Configure the server environments from `production.env` and `development.env` as you like. Now everything should be ready to start.
 
 Open up a terminal and move to your project directory and run following command to start the server:
 ```bash
-npm run devStart 
+npm run start:dev 
 # or
 npm start
 ```
-The command `npm start` uses the `prod.env` file and is used for deployment while `npm run devStart` the `dev.env`file for the local dev server. 
+The command `npm start` uses the `production.env` file and is used for deployment while `npm run start:dev` the `development.env`file for the local dev server. 
 
 Now the api is up and running and if everything worked, you can send now requests to it.
 
 ## Docker
 
-**Requirements**: [Docker Desktop](https://www.docker.com/products/docker-desktop) for Mac andWindows or just [Docker Engine](https://docs.docker.com/engine/install/ubuntu/) for Linux.
+**Requirements**: [Docker Desktop](https://www.docker.com/products/docker-desktop) for Mac and Windows or [Docker Engine](https://docs.docker.com/engine/install/ubuntu/) for Linux.
 
 If you just want to deploy or run the api server, then you can pull the provided docker container and run it:
 
@@ -79,9 +79,15 @@ docker pull infotition/petron
 docker run -p 3000:3000 -it --cap-add=SYS_ADMIN infotition/petron
 ```
 
+You can also run docker-compose within the project directory after running the `npm run webpack:build` command.
+
+```bash
+docker-compose up --build
+```
+
 # Routes
 
-## GET `/api/petron/<TOKEN>/format`
+## GET `/api/petron/petronize`
 The `Body` of the request must be in JSON formatwith the following parameters (* means required):
 
 | parameter | default | type | description |
@@ -156,4 +162,4 @@ If you are experiencing problems while installing/coding petron, need hints or e
 
 # License
 
-Petron is available under the Apache License 2.0, see the [LICENSE](https://github.com/Infotition/petron/blob/main/LICENSE) file for more information.
+Petron is available under the MIT License, see the [LICENSE](https://github.com/Infotition/petron/blob/main/LICENSE) file for more information.

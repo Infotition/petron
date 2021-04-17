@@ -1,8 +1,50 @@
-# Testing, Coverage
-coverage
-dist
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-# Dependencies
-package.json
-package-lock.json
+# testing
+/coverage
 
+# production
+/build
+/dist
+/tmp
+/out-src
+/data
+
+# development
+.todo
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# vercel
+.vercel
+
+# misc
+.sass-cache
+connect.lock
+libpeerconnection.log
+typings
+
+# system files
+.DS_Store
+Thumbs.db
+*.pem

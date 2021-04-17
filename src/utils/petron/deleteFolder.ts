@@ -1,7 +1,7 @@
 //* ------------------- DEPENDENCIES ------------------ *\\
 
 //* Module imports
-const rimraf = require('rimraf');
+import rimraf from 'rimraf';
 
 //* ------------------ DELETE CONTENT ----------------- *\\
 
@@ -10,9 +10,10 @@ const rimraf = require('rimraf');
  *
  * @param {string} path
  */
-module.exports = (path: string) => {
-  //* Save delete the temp directory for the submission
+function deleteFolder(path: string) {
   rimraf(`${path}`, (delErr: Error) => {
     if (delErr) console.log(delErr);
   });
-};
+}
+
+export default deleteFolder;

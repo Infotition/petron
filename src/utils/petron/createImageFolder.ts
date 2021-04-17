@@ -1,7 +1,7 @@
 //* ------------------- DEPENDENCIES ------------------ *\\
 
 //* Module imports
-const fs = require('fs');
+import fs from 'fs';
 
 //* ------------------- CREATE FOLDER ----------------- *\\
 
@@ -10,10 +10,14 @@ const fs = require('fs');
  *
  * @param {string} path
  */
-module.exports = (path: string) => {
+function createImageFolder(path: string) {
   if (!fs.existsSync(path)) {
-    fs.mkdir(path, (folderErr: Error) => {
+    fs.mkdir(path, (folderErr) => {
       if (folderErr) console.log(folderErr);
     });
   }
-};
+}
+
+//* --------------------- EXPORTS --------------------- *\\
+
+export default createImageFolder;
